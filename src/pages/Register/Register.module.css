@@ -1,14 +1,21 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .form {
-  width: 320px;
+  width: 400px;
+  /* border: 1px solid grey; */
+  border-radius: 12px;
+  padding: 25px 40px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 12px;
+  margin-top: 42px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 25%);
 }
 
 .btn {
@@ -29,4 +36,9 @@
   outline: none;
   border: 1px solid grey;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 15%); */
+}
+
+.title {
+  margin: 0;
+  text-align: center;
 }

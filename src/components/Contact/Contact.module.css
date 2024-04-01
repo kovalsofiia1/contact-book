@@ -6,7 +6,7 @@
 }
 
 .contact {
-  width: 320px;
+  min-width: 320px;
   composes: wrap;
   justify-content: space-between;
   border: 1px solid rgb(79, 77, 77);

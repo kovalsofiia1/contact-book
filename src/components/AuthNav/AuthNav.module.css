@@ -1,0 +1,18 @@
+.navigation {
+  display: flex;
+  gap: 18px;
+}
+
+.link {
+  font-size: 22px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #111111;
+}
+
+.link:hover,
+.link:active,
+.link:focus {
+  color: #3e3e3e;
+  text-decoration: underline;
+}

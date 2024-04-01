@@ -1,32 +1,33 @@
 import css from './App.module.css'
-import ContactList from '../ContactList/ContactList';
-import SearchBox from '../SearchBox/SearchBox';
-import ContactForm from '../ContactForm/ContactForm';
+
 import 'modern-normalize';
-import { useDispatch, useSelector } from 'react-redux';
+
+
+// import { Routes, Route } from "react-router-dom";
+// import Home from "../../pages/Home/Home";
+// import Register from "../../pages/Register/Register";
+// import Login from "../../pages/Login/Login";
+// import Contacts from "../../pages/Contacts/Contacts";
+import Layout from '../Layout/Layout';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from '../../redux/contactsOps';
-import { selectContactsInfo} from '../../redux/selectors';
 
 export default function App() {
   const dispatch = useDispatch();
-
-  const { loading, error } = useSelector(selectContactsInfo);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
+  // useEffect(() => {
+  //   dispatch(login)
+  // })
   return (
-   <div className={css.container}>
-      <h1>Phonebook</h1>
-      
-      <ContactForm />
-      <SearchBox />
-      {loading && <b>Loading tasks...</b>}
-      {error && <b>{error}</b>}
-      <ContactList />
-
+    <div>
+      <Layout/>
+       {/* <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="contacts" element={<Contacts />} />
+        </Route>
+      </Routes> */}
     </div>
   )
 }

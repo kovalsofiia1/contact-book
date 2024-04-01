@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  gap: 18px;
+}
+
+.btn {
+  padding: 4px 8px;
+}
+
+.welcomePrompt {
+  font-size: 22px;
+  font-weight: 500;
+  font-family: inherit;
+  color: #1a1a1a;
+}

@@ -5,7 +5,7 @@ import { useId } from 'react';
 import css from './ContactForm.module.css'
 
 import { useDispatch } from "react-redux";
-import { addContact } from '../../redux/contactsOps';
+import { addContact } from '../../redux/contacts/operations';
 
 const initialValues = {
     name: "",
@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
 
 export default function ContactForm() {
     
-     const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const handleSubmit = (values, actions) => {
         const currentDate = new Date();
@@ -37,12 +37,12 @@ export default function ContactForm() {
             <Form className={css.form}>
                 <div className={css.container}>
                     <label htmlFor={nameFieldId}>Name</label>
-                    <Field type="text" name="name" id={nameFieldId} />
+                    <Field type="text" name="name" id={nameFieldId} className={css.input } />
                     <ErrorMessage name="name" component="span" className={ css.error}/>
                 </div>
                 <div className={css.container}>
                      <label htmlFor={phoneFieldId}>Phone number</label>
-                     <Field name="number" id={phoneFieldId} />
+                     <Field name="number" id={phoneFieldId} className={css.input } />
                     <ErrorMessage name="number" component="span" className={ css.error} />
                 </div>
                
