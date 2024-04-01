@@ -1,0 +1,25 @@
+.wrap {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact {
+  width: 320px;
+  composes: wrap;
+  justify-content: space-between;
+  border: 1px solid rgb(79, 77, 77);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.text {
+  line-height: 1;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

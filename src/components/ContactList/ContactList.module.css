@@ -1,0 +1,11 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.noContacts {
+  font-size: 20px;
+  font-weight: 500;
+}
