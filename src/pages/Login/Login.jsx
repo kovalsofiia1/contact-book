@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import "yup-phone";
 import { useId } from 'react';
 import css from './Login.module.css'
-
+import toast from 'react-hot-toast';
 import { useDispatch } from "react-redux";
 
 import {login } from '../../redux/auth/operations'
@@ -23,11 +23,16 @@ export default function Login() {
    const dispatch = useDispatch();
 
     const handleSubmit = (values, actions) => {
-        dispatch(login(values));
-        // const currentDate = new Date();
-        // const formattedDate = currentDate.toISOString();
-        // dispatch(addContact({ name: values.name, number: values.number, createdAt: formattedDate}));
-		// actions.resetForm(initialValues);
+        dispatch(login(values))
+            .then(response => {
+                // Handle successful dispatch
+            })
+            .catch(error => {
+                // Handle error
+                toast.error('Trouble logging in!');
+            });
+        
+		actions.resetForm(initialValues);
     };
     
     const emailFieldId = useId();
