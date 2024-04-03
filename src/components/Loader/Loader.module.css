@@ -1,11 +1,7 @@
 .container {
-  min-height: 80vh;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.prompt {
-  max-width: 600px;
-  text-align: center;
 }

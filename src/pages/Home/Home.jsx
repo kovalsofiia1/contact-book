@@ -1,9 +1,11 @@
-import React from 'react'
+import css from './Home.module.css';
 
 export default function Home() {
   return (
-    <h1>
-      Welcome to your personal Contact Book!
-    </h1>
+    <div className={css.container}>
+      <h1 className="prompt">
+        Welcome to your personal Contact Book!
+      </h1>
+    </div>
   )
 }

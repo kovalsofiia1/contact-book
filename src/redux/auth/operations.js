@@ -21,14 +21,11 @@ const clearAuthHeader = () => {
 // }
 export const register = createAsyncThunk('auth/register', async (credentials, thunkApi) => { 
     try {
-        console.log(credentials);
         const responce = await axios.post('/users/signup', credentials);
-        console.log(responce);
         setAuthHeader(responce.data.token);
         return responce.data;
     }
     catch(error) {
-        console.log(error, thunkApi);
         return thunkApi.rejectWithValue(error.message);
     }
 });
@@ -42,14 +39,11 @@ export const register = createAsyncThunk('auth/register', async (credentials, th
 
 export const login = createAsyncThunk('auth/login', async (credentials, thunkApi) => {
     try {
-        console.log(credentials);
         const responce = await axios.post('/users/login', credentials);
-        console.log(responce);
         setAuthHeader(responce.data.token);
         return responce.data;
     }
     catch (error) {
-        console.log(error);
         return thunkApi.rejectWithValue(error.message);
     }
 });
@@ -59,12 +53,38 @@ export const login = createAsyncThunk('auth/login', async (credentials, thunkApi
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkApi) => {
     try {
-        const response = await axios.post('/users/logout');
+        await axios.post('/users/logout');
         clearAuthHeader();
-        console.log(response);
     }
     catch (error) {
-        console.log(error);
         return thunkApi.rejectWithValue(error.message);
     }
 });
+
+
+//GET users/current
+
+export const refreshUser = createAsyncThunk(
+    'auth/refresh',
+    async (_, thunkApi) => {
+        const reduxState = thunkApi.getState();
+        const savedToken = reduxState.auth.token;
+        setAuthHeader(savedToken);
+
+        try {
+            const response = await axios.get('/users/current');
+            return response.data;
+        }
+        catch (error) {
+            return thunkApi.rejectWithValue(error.message);
+        }
+    },
+    {
+        condition: (_, {getState}) => {
+            const reduxState = getState();
+            const savedToken = reduxState.auth.token;
+
+            return savedToken !== null;
+        }
+    }
+);

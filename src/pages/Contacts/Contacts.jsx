@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from '../../redux/contacts/operations';
 import { selectContactsInfo } from '../../redux/contacts/selectors';
+import Loader from '../../components/Loader/Loader';
+
 
 import css from './Contacts.module.css';
 
@@ -20,13 +22,16 @@ export default function Contacts() {
 
   return (
     <div className={css.container}>
-       <h1>Phonebook</h1>
-      
-      <ContactForm />
+      <div>
+       <h1 className={css.prompt}>Phonebook</h1>
+        <ContactForm />
+      </div>
+      <div>
       <SearchBox />
-      {loading && <b>Loading contacts...</b>}
+      {loading && <Loader/>}
       {error && <b>{error}</b>}
-      <ContactList />
+        <ContactList />
+      </div>
     </div>
   )
 }
