@@ -2,12 +2,10 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from "yup";
 import "yup-phone";
 import { useId } from 'react';
-import css from './Login.module.css'
-import toast from 'react-hot-toast';
+import css from './LoginForm.module.css'
 import { useDispatch } from "react-redux";
 
-import {login } from '../../redux/auth/operations'
-// import { addContact } from '../../redux/contacts/operations';
+import { login } from '../../redux/auth/operations'
 
 const initialValues = {
     email: "",
@@ -19,26 +17,21 @@ const validationSchema = Yup.object().shape({
     password: Yup.string().min(8, "Password should contain at least 8 symbols!")
 });
 
-export default function Login() {
-   const dispatch = useDispatch();
+
+export default function LoginForm() {
+    const dispatch = useDispatch();
 
     const handleSubmit = (values, actions) => {
-        dispatch(login(values))
-            .then(response => {
-                // Handle successful dispatch
-            })
-            .catch(error => {
-                // Handle error
-                toast.error('Trouble logging in!');
-            });
+        dispatch(login(values));
         
 		actions.resetForm(initialValues);
     };
     
     const emailFieldId = useId();
     const passwordFieldId = useId();
-    return (
-        <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
+  return (
+    <div>
+       <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
             <Form className={css.form}>
                 <h2 className={css.title}>Log In</h2>
                 <div className={css.container}>
@@ -54,5 +47,6 @@ export default function Login() {
                 <button type='submit' className={css.btn} >Login</button>
             </Form>
         </Formik>
-    )
+    </div>
+  )
 }

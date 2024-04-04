@@ -1,13 +1,12 @@
-import ContactList from '../../components/ContactList/ContactList';
-import SearchBox from '../../components/SearchBox/SearchBox';
-import ContactForm from '../../components/ContactForm/ContactForm';
+import ContactList from '../components/ContactList/ContactList';
+import SearchBox from '../components/SearchBox/SearchBox';
+import ContactForm from '../components/ContactForm/ContactForm';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from '../../redux/contacts/operations';
-import { selectContactsInfo } from '../../redux/contacts/selectors';
-import Loader from '../../components/Loader/Loader';
-
+import { fetchContacts } from '../redux/contacts/operations';
+import { selectContactsInfo } from '../redux/contacts/selectors';
+import Loader from '../components/Loader/Loader';
 
 import css from './Contacts.module.css';
 

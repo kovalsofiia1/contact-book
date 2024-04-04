@@ -2,10 +2,10 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from "yup";
 import "yup-phone";
 import { useId } from 'react';
-import css from './Register.module.css';
+import css from './RegistrationForm.module.css';
 import { register } from '../../redux/auth/operations';
 import { useDispatch } from "react-redux";
-// import { addContact } from '../../redux/contacts/operations';
+import toast from 'react-hot-toast';
 
 const initialValues = {
     name: "",
@@ -19,16 +19,20 @@ const validationSchema = Yup.object().shape({
     password: Yup.string().min(8, "Password should contain at least 8 symbols!")
 });
 
-export default function Register() {
+export default function RegistrationForm() {
    const dispatch = useDispatch();
 
     const handleSubmit = (values, actions) => {
         console.log(values)
-        dispatch(register(values));
-        // const currentDate = new Date();
-        // const formattedDate = currentDate.toISOString();
-        // dispatch(addContact({ name: values.name, number: values.number, createdAt: formattedDate}));
-		// actions.resetForm(initialValues);
+        dispatch(register(values))
+            .then(() => {
+                // Handle successful dispatch
+            })
+            .catch(() => {
+                // Handle error
+                toast.error('Trouble logging in!');
+            });
+		actions.resetForm(initialValues);
     };
     
     const nameFieldId = useId();

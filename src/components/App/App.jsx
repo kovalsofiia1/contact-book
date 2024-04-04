@@ -8,11 +8,13 @@ import { selectIsRefreshing } from '../../redux/auth/selectors';
 import Loader from '../Loader/Loader';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute';
+import { Toaster } from "react-hot-toast";
+
 
 const Home = lazy(() => import("../../pages/Home/Home"));
-const Register= lazy(() => import("../../pages/Register/Register"));
-const Login= lazy(() => import("../../pages/Login/Login"));
-const Contacts = lazy(() => import("../../pages/Contacts/Contacts"));
+const Register= lazy(() => import("../../pages/Register"));
+const Login= lazy(() => import("../../pages/Login"));
+const Contacts = lazy(() => import("../../pages/Contacts"));
 
 
 export default function App() {
@@ -29,12 +31,13 @@ export default function App() {
         <Suspense fallback="null">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/register" element={<RestrictedRoute component={ <Register /> } />} />
-            <Route path="/login" element={<RestrictedRoute component={ <Login /> } />} />
-            <Route path="/contacts" element={<PrivateRoute component={ <Contacts /> } />} />
+            <Route path="/register" element={<RestrictedRoute component={Register}  redirectTo="/contacts" />} />
+            <Route path="/login" element={<RestrictedRoute component={Login }  redirectTo="/contacts"/>} />
+            <Route path="/contacts" element={<PrivateRoute component={Contacts }  redirectTo="/login" />} />
           </Routes>
         </Suspense>
       )}
+      <Toaster />
     </Layout>
   )
 }
